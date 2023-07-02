@@ -1,2 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-    de.serdioa.ratelimit.autoconfigure.BucketFactoryAutoConfiguration
+    de.serdioa.ratelimit.autoconfigure.BucketFactoryAutoConfiguration, \
+    de.serdioa.ratelimit.autoconfigure.RateLimitServiceAutoConfiguration

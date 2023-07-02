@@ -2,8 +2,8 @@ package de.serdioa.ratelimit.example;
 
 import de.serdioa.ratelimit.RateLimitHttpHeaders;
 import de.serdioa.ratelimit.RateLimitProbe;
+import de.serdioa.ratelimit.service.HttpSessionRateLimitService;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,15 +17,12 @@ import org.springframework.web.server.ResponseStatusException;
 public class PingController {
 
     @Autowired
-    private RateLimitService rateLimitService;
-
-    @Autowired
-    private HttpSession httpSession;
+    private HttpSessionRateLimitService rateLimitService;
 
 
     @GetMapping("/ping")
     public Pong ping(HttpServletResponse response, @RequestParam(name = "token", defaultValue = "pong") String token) {
-        final RateLimitProbe probe = this.rateLimitService.tryConsume(this.httpSession, "ping");
+        final RateLimitProbe probe = this.rateLimitService.tryConsume("ping");
         response.setHeader(RateLimitHttpHeaders.LIMIT, RateLimitHttpHeaders.limit(probe));
         response.setHeader(RateLimitHttpHeaders.POLICY, RateLimitHttpHeaders.policy(probe));
         response.setHeader(RateLimitHttpHeaders.REMAINING, RateLimitHttpHeaders.remaining(probe));

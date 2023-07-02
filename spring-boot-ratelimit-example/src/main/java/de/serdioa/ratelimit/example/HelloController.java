@@ -2,8 +2,8 @@ package de.serdioa.ratelimit.example;
 
 import de.serdioa.ratelimit.RateLimitHttpHeaders;
 import de.serdioa.ratelimit.RateLimitProbe;
+import de.serdioa.ratelimit.service.HttpSessionRateLimitService;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,15 +17,12 @@ import org.springframework.web.server.ResponseStatusException;
 public class HelloController {
 
     @Autowired
-    private RateLimitService rateLimitService;
-
-    @Autowired
-    private HttpSession httpSession;
+    private HttpSessionRateLimitService rateLimitService;
 
 
     @GetMapping("/hello")
     public Message hello(HttpServletResponse response, @RequestParam(name = "name", defaultValue = "world") String name) {
-        final RateLimitProbe probe = this.rateLimitService.tryConsume(this.httpSession, "hello");
+        final RateLimitProbe probe = this.rateLimitService.tryConsume("hello");
         response.setHeader(RateLimitHttpHeaders.LIMIT, RateLimitHttpHeaders.limit(probe));
         response.setHeader(RateLimitHttpHeaders.POLICY, RateLimitHttpHeaders.policy(probe));
         response.setHeader(RateLimitHttpHeaders.REMAINING, RateLimitHttpHeaders.remaining(probe));
