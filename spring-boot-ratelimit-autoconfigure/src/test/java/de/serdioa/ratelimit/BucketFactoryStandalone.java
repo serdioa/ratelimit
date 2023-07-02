@@ -24,12 +24,12 @@ public class BucketFactoryStandalone {
             System.out.println("Remaining tokens: " + probe.getRemainingTokens());
             System.out.println("Refill period: " + configuration.getRefillPeriod());
 
-            System.out.println("RateLimit-Limit: " + RateLimitHttpHeaderBuilder.limit(configuration, probe));
-            System.out.println("RateLimit-Policy: " + RateLimitHttpHeaderBuilder.policy(configuration));
-            System.out.println("RateLimit-Remaining: " + RateLimitHttpHeaderBuilder.remaining(probe));
-            System.out.println("RateLimit-Reset: " + RateLimitHttpHeaderBuilder.reset(probe));
+            System.out.println("RateLimit-Limit: " + RateLimitHttpHeaders.limit(configuration, probe));
+            System.out.println("RateLimit-Policy: " + RateLimitHttpHeaders.policy(configuration));
+            System.out.println("RateLimit-Remaining: " + RateLimitHttpHeaders.remaining(probe));
+            System.out.println("RateLimit-Reset: " + RateLimitHttpHeaders.reset(probe));
             if (!probe.isConsumed()) {
-                System.out.println("Retry-After: " + RateLimitHttpHeaderBuilder.retryAfter(probe));
+                System.out.println("Retry-After: " + RateLimitHttpHeaders.retryAfter(probe));
             }
 
             System.out.println();

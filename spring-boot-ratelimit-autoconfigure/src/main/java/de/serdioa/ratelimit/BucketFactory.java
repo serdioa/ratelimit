@@ -44,6 +44,11 @@ public class BucketFactory {
     }
 
 
+    public void setCapacity(final Map<String, Long> capacity) {
+        this.capacity.putAll(capacity);
+    }
+
+
     public void addInitialTokens(final Map<String, Long> initialTokens) {
         this.initialTokens.putAll(initialTokens);
     }
@@ -51,6 +56,11 @@ public class BucketFactory {
 
     public void addInitialTokens(final String key, final Long initialTokens) {
         this.initialTokens.put(key, initialTokens);
+    }
+
+
+    public void setInitialTokens(final Map<String, Long> initialTokens) {
+        this.initialTokens.putAll(initialTokens);
     }
 
 
@@ -64,6 +74,11 @@ public class BucketFactory {
     }
 
 
+    public void setRefillTokens(final Map<String, Long> refillTokens) {
+        this.refillTokens.putAll(refillTokens);
+    }
+
+
     public void addRefillPeriod(final Map<String, Duration> refillPeriod) {
         this.refillPeriod.putAll(refillPeriod);
     }
@@ -74,6 +89,11 @@ public class BucketFactory {
     }
 
 
+    public void setRefillPeriod(final Map<String, Duration> refillPeriod) {
+        this.refillPeriod.putAll(refillPeriod);
+    }
+
+
     public void addGreedy(final Map<String, Boolean> greedy) {
         this.greedy.putAll(greedy);
     }
@@ -81,6 +101,11 @@ public class BucketFactory {
 
     public void addGreedy(final String key, final Boolean greedy) {
         this.greedy.put(key, greedy);
+    }
+
+
+    public void setGreedy(final Map<String, Boolean> greedy) {
+        this.greedy.putAll(greedy);
     }
 
 

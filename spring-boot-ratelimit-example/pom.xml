@@ -14,6 +14,12 @@
     <packaging>jar</packaging>
 
     <dependencies>
+        <dependency>
+            <groupId>de.serdioa</groupId>
+            <artifactId>spring-boot-ratelimit-autoconfigure</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
         <!-- Use Jetty as a servlet container -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
